@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certify — Independent Credential Verification</title>
+  <meta name="description" content="Certify is an independent verification authority. Confirm credentials issued by partner organizations in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230B1E3F'/%3E%3Cpath d='M10 16.5l4 4 8-9' stroke='%230EA5A4' stroke-width='2.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="brand" id="brand">
+        <span class="brand-mark brand-mark-dyn">C</span>
+        <span class="brand-name">Certify</span>
+      </a>
+      <nav class="primary-nav" id="primaryNav">
+        <a href="#how">How it works</a>
+        <a href="#why">Why Certify</a>
+        <a href="#orgs">Organizations</a>
+      </nav>
+      <div class="header-cta">
+        <button class="btn btn-primary" data-open-verify>
+          <i data-lucide="shield-check" class="icon"></i>
+          Verify Certificate
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <i data-lucide="menu" class="icon" style="width:18px;height:18px"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <p class="overline hero-overline">Independent Verification Authority</p>
+            <h1>The standard for<br>credential verification.</h1>
+            <p class="hero-sub">
+              Certify is the neutral third party that confirms credentials issued by
+              leading organizations worldwide. One search. One source of truth.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-white" data-open-verify>
+                Verify a Certificate
+                <i data-lucide="arrow-right" class="icon"></i>
+              </button>
+              <a href="#how" class="btn btn-ghost-light">How it works</a>
+            </div>
+          </div>
+
+          <div class="hero-media fade-up" id="heroMedia">
+            <div class="hero-media-placeholder">
+              <i data-lucide="image" class="icon" style="width:40px;height:40px"></i>
+              <span>Add banner images from the admin panel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-num">99.99%</span>
+            <span class="stat-label">Platform uptime, last 90 days</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">40+</span>
+            <span class="stat-label">Countries served</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">SOC 2</span>
+            <span class="stat-label">Type II certified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Announcements ─────────────────────────────────────────────────── -->
+    <section class="latest">
+      <div class="container">
+        <div class="latest-head">
+          <span class="overline latest-label">Latest</span>
+          <div class="latest-controls">
+            <button id="slidePrev" aria-label="Previous">
+              <i data-lucide="chevron-left" class="icon"></i>
+            </button>
+            <button id="slideNext" aria-label="Next">
+              <i data-lucide="chevron-right" class="icon"></i>
+            </button>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <div class="slider-track" id="sliderTrack">
+            <article class="announcement">
+              <span class="ann-tag">Network</span>
+              <h3>Northbridge Institute joins as a verified issuer</h3>
+              <p>Northbridge credentials are now searchable through the Certify directory.</p>
+              <div class="ann-date">April 28, 2026</div>
+            </article>
+            <article class="announcement">
+              <span class="ann-tag">Reliability</span>
+              <h3>99.99% uptime recorded across the last quarter</h3>
+              <p>Our verification platform recorded zero downtime incidents in Q1.</p>
+              <div class="ann-date">April 14, 2026</div>
+            </article>
+            <article class="announcement">
+              <span class="ann-tag">Security</span>
+              <h3>SOC 2 Type II audit successfully renewed</h3>
+              <p>Independent auditors confirm the integrity of our verification pipeline.</p>
+              <div class="ann-date">March 30, 2026</div>
+            </article>
+            <article class="announcement">
+              <span class="ann-tag">Product</span>
+              <h3>Median verification time drops below 240 ms</h3>
+              <p>Infrastructure improvements bring faster lookups for high-volume employers.</p>
+              <div class="ann-date">March 12, 2026</div>
+            </article>
+            <article class="announcement">
+              <span class="ann-tag">Network</span>
+              <h3>Twelve new partner organizations onboarded</h3>
+              <p>Expanding the verified directory across finance, health, and engineering.</p>
+              <div class="ann-date">February 22, 2026</div>
+            </article>
+          </div>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </section>
+
+    <!-- ── How it works ──────────────────────────────────────────────────── -->
+    <section class="how" id="how">
+      <div class="container">
+        <span class="overline how-label">How it works</span>
+        <div class="how-steps">
+          <div class="how-step fade-up">
+            <div class="how-num">01</div>
+            <h3>Search</h3>
+            <p>Select the issuing organization from our verified directory of partner institutions.</p>
+          </div>
+          <div class="how-step fade-up">
+            <div class="how-num">02</div>
+            <h3>Verify</h3>
+            <p>Enter the certificate number and the holder's full name to authenticate the record.</p>
+          </div>
+          <div class="how-step fade-up">
+            <div class="how-num">03</div>
+            <h3>Confirm</h3>
+            <p>View the original certificate document, held on file by Certify as a neutral third party.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why Certify ────────────────────────────────────────────────────── -->
+    <section class="why" id="why">
+      <div class="container">
+        <div class="why-grid">
+          <div class="why-intro fade-up">
+            <span class="overline">Why Certify</span>
+            <h2>Built for credentials that matter.</h2>
+            <p>
+              An infrastructure-grade verification layer trusted by issuers, employers,
+              and regulators across more than forty countries.
+            </p>
+          </div>
+          <div class="why-list fade-up">
+            <div class="why-item">
+              <h3>Tamper-proof records</h3>
+              <p>Every certificate is fingerprinted and stored against an immutable verification log.</p>
+            </div>
+            <div class="why-item">
+              <h3>Instant verification</h3>
+              <p>Sub-second lookups, available 24/7 from any device, anywhere in the world.</p>
+            </div>
+            <div class="why-item">
+              <h3>Multi-organization support</h3>
+              <p>One platform for credentials from hundreds of professional bodies and institutes.</p>
+            </div>
+            <div class="why-item">
+              <h3>Independent third party</h3>
+              <p>We are not the issuer. Our only role is to confirm what is true — neutrally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Organizations ─────────────────────────────────────────────────── -->
+    <section class="orgs-strip" id="orgs">
+      <div class="container">
+        <div class="orgs-head fade-up">
+          <div>
+            <span class="overline">The Network</span>
+            <h2 style="margin-top:10px">Issuers verified through Certify</h2>
+            <p>A growing roster of professional bodies and institutions whose credentials we hold on file.</p>
+          </div>
+          <button class="btn btn-primary" data-open-verify>
+            <i data-lucide="shield-check" class="icon"></i>
+            Verify a credential
+          </button>
+        </div>
+        <div class="orgs-grid" id="orgsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ── CTA band ───────────────────────────────────────────────────────── -->
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-inner">
+          <div>
+            <h2>Verify a credential now.</h2>
+            <p class="cta-sub">It takes less than 30 seconds. No account required.</p>
+          </div>
+          <button class="btn btn-accent" data-open-verify>
+            <i data-lucide="shield-check" class="icon"></i>
+            Start verification
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand">
+            <span class="brand-mark brand-mark-dyn">C</span>
+            <span class="brand-name">Certify</span>
+          </a>
+          <p>An independent verification authority for credentials that matter. Headquartered in New York, operating globally.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#why">Why Certify</a></li>
+            <li><a href="#orgs">Organizations</a></li>
+            <li><a href="#" data-open-verify>Verify a credential</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Acceptable Use</a></li>
+            <li><a href="#">Trust Center</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Certify, Inc. All rights reserved.</span>
+        <a class="admin-link" href="#" id="adminLink">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Verify Modal ───────────────────────────────────────────────────── -->
+  <div class="modal-backdrop" id="verifyModal" role="dialog" aria-modal="true" aria-labelledby="verifyTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="verifyTitle">Verify a Certificate</h3>
+        <button class="modal-close" data-close-modal aria-label="Close">
+          <i data-lucide="x" class="icon" style="width:16px;height:16px"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="stepper" id="verifyStepper">
+          <div class="step-pill active" data-step="1"><span class="num">1</span> Organization</div>
+          <div class="step-pill"        data-step="2"><span class="num">2</span> Certificate №</div>
+          <div class="step-pill"        data-step="3"><span class="num">3</span> Holder</div>
+        </div>
+
+        <div class="verify-step" data-step="1">
+          <p>Select the organization that issued the certificate.</p>
+          <div class="org-picker" id="orgPicker">
+            <div class="empty-state">Loading organizations…</div>
+          </div>
+          <div class="form-actions">
+            <span></span>
+            <button class="btn btn-primary" id="toStep2" disabled>
+              Continue <i data-lucide="arrow-right" class="icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="verify-step" data-step="2" hidden>
+          <p>Enter the certificate number exactly as it appears on the document.</p>
+          <div class="field">
+            <label for="certNumber">Certificate number</label>
+            <input type="text" id="certNumber" placeholder="e.g. CT-19-44081" autocomplete="off" />
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost" data-back="1">
+              <i data-lucide="arrow-left" class="icon"></i> Back
+            </button>
+            <button class="btn btn-primary" id="toStep3" disabled>
+              Continue <i data-lucide="arrow-right" class="icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="verify-step" data-step="3" hidden>
+          <p>Enter the full name of the certificate holder for matching.</p>
+          <div class="field">
+            <label for="applicantName">Holder's full name</label>
+            <input type="text" id="applicantName" placeholder="e.g. Alex M. Carter" autocomplete="off" />
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost" data-back="2">
+              <i data-lucide="arrow-left" class="icon"></i> Back
+            </button>
+            <button class="btn btn-primary" id="runVerify" disabled>
+              <i data-lucide="shield-check" class="icon"></i> Verify
+            </button>
+          </div>
+        </div>
+
+        <div class="verify-step result" data-step="result" hidden>
+          <div id="resultContent"></div>
+          <div class="form-actions" style="justify-content:center;margin-top:16px">
+            <button class="btn btn-ghost" id="verifyAnother">
+              <i data-lucide="rotate-ccw" class="icon"></i> Verify another
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PIN Modal ─────────────────────────────────────────────────────── -->
+  <div class="modal-backdrop" id="pinModal" role="dialog" aria-modal="true" aria-labelledby="pinTitle">
+    <div class="modal" style="max-width:360px">
+      <div class="modal-header">
+        <h3 id="pinTitle">Restricted access</h3>
+        <button class="modal-close" data-close-modal aria-label="Close">
+          <i data-lucide="x" class="icon" style="width:16px;height:16px"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align:center">
+        <p>Enter your administrator PIN to continue.</p>
+        <input type="password" inputmode="numeric" maxlength="4" class="pin-input" id="pinInput" autocomplete="off" />
+        <div class="pin-error" id="pinError"></div>
+        <button class="btn btn-primary" id="pinSubmit" style="margin:0 auto">
+          <i data-lucide="lock-open" class="icon"></i> Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

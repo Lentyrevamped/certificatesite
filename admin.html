@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certify · Admin Console</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1E3F'/%3E%3Cpath d='M10 16.5l4 4 8-9' stroke='%230EA5A4' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+</head>
+<body class="admin-shell">
+
+  <!-- PIN gate (shown until unlocked) -->
+  <div class="modal-backdrop" id="gateModal" role="dialog" aria-modal="true">
+    <div class="modal" style="max-width:380px">
+      <div class="modal-header">
+        <h3>Restricted access</h3>
+      </div>
+      <div class="modal-body" style="text-align:center">
+        <p style="margin-bottom:18px">Enter your administrator PIN to continue.</p>
+        <input type="password" inputmode="numeric" maxlength="4" class="pin-input" id="gatePin" autocomplete="off" />
+        <div class="pin-error" id="gateError"></div>
+        <button class="btn btn-primary" id="gateSubmit" style="margin:0 auto">
+          <i data-lucide="lock-open" class="icon"></i> Unlock
+        </button>
+        <div style="margin-top:18px">
+          <a href="index.html" class="btn btn-link">Back to site</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="admin-header">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:14px">
+        <a href="index.html" class="brand">
+          <span class="brand-mark brand-mark-dyn">C</span>
+          <span class="brand-name">Certify</span>
+        </a>
+        <span class="crumb">/ Admin Console</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <a href="index.html" class="btn btn-ghost btn-sm" style="background:rgba(255,255,255,0.06);color:white;border-color:rgba(255,255,255,0.18)">
+          <i data-lucide="external-link" class="icon" style="width:14px;height:14px"></i> View site
+        </a>
+        <button class="btn btn-ghost btn-sm" id="signOut" style="background:rgba(255,255,255,0.06);color:white;border-color:rgba(255,255,255,0.18)">
+          <i data-lucide="log-out" class="icon" style="width:14px;height:14px"></i> Sign out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="admin-tabs">
+    <div class="container">
+      <button class="tab-btn active" data-tab="orgs">Organizations</button>
+      <button class="tab-btn" data-tab="certs">Certificates</button>
+      <button class="tab-btn" data-tab="settings">Banner &amp; Logo</button>
+    </div>
+  </nav>
+
+  <main class="admin-main">
+    <div class="container">
+
+      <!-- Organizations tab -->
+      <section class="tab-panel active" data-panel="orgs">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Add organization</h2>
+              <p>Onboard a new issuing organization to the Certify network.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form id="orgForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="orgName">Name *</label>
+                  <input type="text" id="orgName" required placeholder="e.g. Northbridge Institute" />
+                </div>
+                <div class="field">
+                  <label for="orgLogo">Logo URL</label>
+                  <input type="url" id="orgLogo" placeholder="https://…/logo.png" />
+                </div>
+                <div class="field full">
+                  <label for="orgDesc">Description</label>
+                  <textarea id="orgDesc" rows="2" placeholder="A short description of the organization"></textarea>
+                </div>
+              </div>
+              <div class="form-actions" style="justify-content:flex-end;margin-top:16px">
+                <button type="submit" class="btn btn-primary">
+                  <i data-lucide="plus" class="icon"></i> Add organization
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Organizations</h2>
+              <p id="orgCount">—</p>
+            </div>
+          </div>
+          <table class="data-table" id="orgsTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Logo</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="5">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Certificates tab -->
+      <section class="tab-panel" data-panel="certs">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Add certificate</h2>
+              <p>Upload the certificate image to Cloudinary first, then paste its delivery URL here.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form id="certForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="certOrg">Organization *</label>
+                  <select id="certOrg" required>
+                    <option value="">Select organization…</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="certNum">Certificate number *</label>
+                  <input type="text" id="certNum" required placeholder="e.g. CT-19-44081" />
+                </div>
+                <div class="field">
+                  <label for="certName">Holder's full name *</label>
+                  <input type="text" id="certName" required placeholder="e.g. Alex M. Carter" />
+                </div>
+                <div class="field">
+                  <label for="certUrl">Cloudinary image URL *</label>
+                  <input type="url" id="certUrl" required placeholder="https://res.cloudinary.com/…" />
+                </div>
+              </div>
+              <div class="form-actions" style="justify-content:flex-end;margin-top:16px">
+                <button type="submit" class="btn btn-primary">
+                  <i data-lucide="plus" class="icon"></i> Add certificate
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Certificates on file</h2>
+              <p id="certCount">Select an organization to view records.</p>
+            </div>
+          </div>
+          <div class="toolbar">
+            <label for="filterOrg">Organization</label>
+            <select id="filterOrg">
+              <option value="">All organizations</option>
+            </select>
+          </div>
+          <table class="data-table" id="certsTable">
+            <thead>
+              <tr>
+                <th>Certificate №</th>
+                <th>Holder</th>
+                <th>Image</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="5">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Banner & Logo tab -->
+      <section class="tab-panel" data-panel="settings">
+
+        <!-- Logo -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Site logo</h2>
+              <p>Upload your logo to Cloudinary and paste the delivery URL. Leave blank to use the default Certify mark.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="field full">
+                <label for="logoUrl">Logo image URL</label>
+                <input type="url" id="logoUrl" placeholder="https://res.cloudinary.com/…/logo.png" />
+                <div class="help">Recommended: transparent PNG, height 56 px or above.</div>
+              </div>
+            </div>
+            <div id="logoPreview" style="margin:12px 0 16px"></div>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-primary" id="saveLogo">
+                <i data-lucide="save" class="icon"></i> Save logo
+              </button>
+              <button class="btn btn-ghost" id="clearLogo">Remove logo</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner images -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Add banner image</h2>
+              <p>Images appear in the hero section of the landing page and cycle automatically.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form id="bannerForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="bannerUrl">Cloudinary image URL *</label>
+                  <input type="url" id="bannerUrl" required placeholder="https://res.cloudinary.com/…" />
+                </div>
+                <div class="field">
+                  <label for="bannerCaption">Caption (optional)</label>
+                  <input type="text" id="bannerCaption" placeholder="Brief text shown over the image" />
+                </div>
+                <div class="field">
+                  <label for="bannerOrder">Display order</label>
+                  <input type="number" id="bannerOrder" value="0" min="0" placeholder="0" />
+                  <div class="help">Lower numbers appear first.</div>
+                </div>
+              </div>
+              <div class="form-actions" style="justify-content:flex-end;margin-top:16px">
+                <button type="submit" class="btn btn-primary">
+                  <i data-lucide="plus" class="icon"></i> Add image
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Banner images</h2>
+              <p id="bannerCount">—</p>
+            </div>
+          </div>
+          <table class="data-table" id="bannerTable">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Caption</th>
+                <th>Order</th>
+                <th>Added</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="5">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
